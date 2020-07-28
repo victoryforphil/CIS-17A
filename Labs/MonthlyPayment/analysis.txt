@@ -1,0 +1,2 @@
+- Calculate the cents using a int and multiplying the monthly Payment by 100 to make it an init, this
+therefore removes the floating point inaccuraces when rounding.

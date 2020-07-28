@@ -1,0 +1,12 @@
+his assignment was locked Jun 27 at 11:59pm.
+Read the attached file.  csc17a_coversion.pdf 
+
+At the end is a self-test.  Show equivalence and create an Excel or OpenOffice Calc table with the solutions.
+
+Place the Excel or OpenOffice Calc file in a folder called Table and zip the Table folder.
+
+Submit the zip file here and send and email which copies yourself, attaches the file in your student or personal email outside of canvas to mark.lehr@rcc.edu with subject:  YourLastName, YourFirstName - Lab Conversion 1 - 46721 or 46738
+
+Note:  I have Excel and OpenOffice.  I will not read a different file format so make sure you use either of those applications.  Open office is a free download.
+
+ 
