@@ -29,13 +29,23 @@ int main(){
     std::cout << ">> Populating ship array..." << std::endl;
 
     state->plyStates[0]->populateShips();
-    
+    state->plyStates[1]->populateShips();
     state->plyStates[0]->printShips();
     
     std::cout << ">> Setting up board" << std::endl;
 
     state->plyStates[0]->genBoard();
+    state->plyStates[1]->genBoard();
     state->plyStates[0]->displayBoard(false);
+
+    bool hasWon = false;
+    while (hasWon == false)
+    {
+        state->plyStates[state->turn]->takeTurn();
+        //takeTurn(state);
+        //saveState(state);
+        //hasWon = checkWin(state.plyStates[0]) && checkWin(state.plyStates[1]);
+    }
 
     return 0;
 }

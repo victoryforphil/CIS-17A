@@ -20,6 +20,13 @@ T* Prob2Sort<T>::sortArray(const T *input, int len, bool ascend){
     return input;
 }
 template<class T>
-T *Prob2Sort<T>::sortArray(const T *input, int lenX, int lenY, int col, bool ascen){
+T *Prob2Sort<T>::sortArray(const T *input, int lenX, int lenY, int col, bool ascend){
+
+    T* colArr = new T[lenY]; // Y axis = cols
+
+    for(int i=0;i<lenX;i++){
+        colArr[i] = input[(lenY * i) + col];
+    }
+
     return input;
 }

@@ -29,6 +29,7 @@ namespace BSGame
         Player(std::string name, bool isAi);
         void populateShips();
         void print();
+        void getChoice(BSVector2& result);
         void takeTurn();
         void printShips();
         bool checkPlace(BSVector2 start, BSVector2 end);

@@ -264,22 +264,29 @@ specification
 
 1)  The constructor initilizes the balance if greater than
 0 and sets the other properties to 0.
+
 2)  If the transaction is greater than 0 then a Deposit is
 made else a Withdraw is made.
+
 3)  The balance is increased with a deposit but decreased
 if a Withdrawal.  This assumes the Withdrawal is less than
 the balance.  Can't have a negative balance.  Tell the user
 that he is trying to make a withdrawal that exceeds his
 balance.
+
 4)  When a WithDrawal is made increment FreqWithDraw else
 if a Deposit is made increment FreqDeposit.
+
 5)  The toString procedure outputs all properties.
+
 6)  The total procedure tells you how much you will have in
 savings given the interest rate and the amount of time.
 Total(float savint,int time)  returns Balance*(1+savint)^time.
 Utilize a for loop for this calculation.
+
 7)  See if you can write a recursive procedure that does
 the same thing as 6).  Call it TotalRecursive.
+
 8)  Think of what follows as pseudocode.  The random number
 generator below produces a number between 0 and 32,767.  If
 you fashion a random number that will do the same then you
@@ -333,25 +340,25 @@ specification
 		float  NetPay;          //Property
 
 1)  The constructor inputs the Name, Job Title and Hourly rate of
-the employee.
+	the employee.
 2)  All other properties are initialized to zero in the constructor.
 3)  The Tax utility routine calculates the tax based on 
-.1 for GrossPay < 500,
-.2 for GrossPay<1000 but greater than 500, and 
-.3 for anything above 1000.
+	.1 for GrossPay < 500,
+	.2 for GrossPay<1000 but greater than 500, and 
+	.3 for anything above 1000.
 4)  The Set procedures simply write and return the obvious
-properties.
+	properties.
 5)  The toString procedure prints all the properties.
 6)  The getGrossPay procedure calculates straight time for hours
-worked < 40, time and 1/2 for hours worked < 50 but greater than
-40, double time for all hours above 50.  The inputs to this
-routine are the hourly rate and the hours worked.
+w	orked < 40, time and 1/2 for hours worked < 50 but greater than
+	40, double time for all hours above 50.  The inputs to this
+	routine are the hourly rate and the hours worked.
 7)  The net pay routine returns the gross pay subtracting
-off any taxes.  Realize that the Tax procedure is utilized
-but these taxes are progressive rates for income above the
-cutoff limit as described in 3).  Taxes are calculated for
-10% below 500, 20% for amounts between 500 and 1000 and
-finally anything above 1000 is calculated at the 30% rate.
+	off any taxes.  Realize that the Tax procedure is utilized
+	but these taxes are progressive rates for income above the
+	cutoff limit as described in 3).  Taxes are calculated for
+	10% below 500, 20% for amounts between 500 and 1000 and
+	finally anything above 1000 is calculated at the 30% rate.
 8)  The Hoursworked must be > 0 and < 84
 9)  The Hourlyrate must be > 0 and < 200
 10) The calculate pay routine returns the net pay.
