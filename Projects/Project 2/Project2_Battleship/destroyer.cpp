@@ -11,14 +11,3 @@
  * Created on July 28, 2020, 12:50 AM
  */
 
-#include "destroyer.hpp"
-
-destroyer::destroyer() {
-}
-
-destroyer::destroyer(const destroyer& orig) {
-}
-
-destroyer::~destroyer() {
-}
-

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "board.hpp"
 namespace BSGame
 {
     class Ship
@@ -13,7 +14,7 @@ namespace BSGame
         int mId;
         int mSize;
         int mHits;
-        int mType;
+        Tile mType;
         bool mIsDead;
     public:
         Ship(int id){mId = id;};
@@ -23,6 +24,7 @@ namespace BSGame
         void print();
         int getSize();
         int getId();
+        int getType();
         std::string getName();
     };
     

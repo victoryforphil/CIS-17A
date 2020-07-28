@@ -24,3 +24,7 @@ void Ship::print(){
     std::cout << std::left << std::setw(5) << std::setfill(' ') << getId() << std::setw(32) << getName() << std::setw(1) << getHealth() << "/" << getSize() << std::endl;
     //std::cout << "SHIP!" << std::endl;
 }
+
+int Ship::getType(){
+    return mType;
+}

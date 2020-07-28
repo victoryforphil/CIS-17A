@@ -1,6 +1,7 @@
 #ifndef _BS_BOARD_H_
 #define _BS_BOARD_H_
 #include "math.hpp"
+
 namespace BSGame
 {
     enum Tile
@@ -17,7 +18,7 @@ namespace BSGame
     class Board
     {
     private:
-        int mBoard[10][10]; //Y X order
+        int mBoard[15][15]; //Y X order
 
     public:
         Board();

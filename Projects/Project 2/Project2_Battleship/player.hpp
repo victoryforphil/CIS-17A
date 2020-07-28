@@ -6,6 +6,9 @@
 #include "player.hpp"
 #include "board.hpp"
 
+#include "carrier.hpp"
+#include "cruiser.hpp"
+#include "destroyer.hpp"
 #include "battleship.hpp"
 namespace BSGame
 {
@@ -30,6 +33,11 @@ namespace BSGame
         void printShips();
         bool checkPlace(BSVector2 start, BSVector2 end);
         int placeShip(Ship* ship);
+
+        void displayBoard(bool hitBoard);
+
+        void genBoard();
+
         Board* getPrivateBoard();
         Board* getHitBoard();
     };

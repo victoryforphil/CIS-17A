@@ -11,14 +11,3 @@
  * Created on July 28, 2020, 12:50 AM
  */
 
-#include "cruiser.hpp"
-
-cruiser::cruiser() {
-}
-
-cruiser::cruiser(const cruiser& orig) {
-}
-
-cruiser::~cruiser() {
-}
-

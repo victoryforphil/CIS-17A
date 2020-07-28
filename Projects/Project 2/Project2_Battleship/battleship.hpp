@@ -9,13 +9,14 @@ namespace BSGame
     private:
         /* data */
     public:
-       Battleship(int id) : Ship( id)
+    Battleship(int id) : Ship( id)
     {
         mId = id;
         mName = "Battleship";
         mSize = 4;
         mIsDead = false;
         mHits = 0;
+        mType = Tile::BATTLESHIP;
     }
        // ~Battleship();
     };

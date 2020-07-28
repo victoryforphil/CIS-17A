@@ -1,10 +1,10 @@
 #include "board.hpp"
 
 using namespace BSGame;
-
+#include <iostream>
 
 Board::Board(){
-
+    resetBoard(EMPTY);
 }
 
 int Board::getTile(BSVector2 vector){
@@ -21,8 +21,8 @@ void Board::resetBoard(int defaultVal){
 
 void Board::setTile(BSVector2 vector, int value){
     mBoard[vector.y()][vector.x()] = value;
-}
 
+}
 
 Board::~Board(){
 

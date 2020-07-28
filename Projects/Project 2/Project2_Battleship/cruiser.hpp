@@ -1,27 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+#ifndef _BS_CRUISER_H_
+#define _BS_CRUISER_H_
 
-/* 
- * File:   cruiser.hpp
- * Author: Victo
- *
- * Created on July 28, 2020, 12:50 AM
- */
+#include "ship.hpp"
+namespace BSGame
+{
+    class Cruiser : public Ship
+    {
+    private:
+        /* data */
+    public:
+       Cruiser(int id) : Ship( id)
+    {
+        mId = id;
+        mName = "Cruiser";
+        mSize = 2;
+        mIsDead = false;
+        mType = CRUISER;
+        mHits = 0;
+    }
+       // ~Battleship();
+    };
+    
+    
+    
 
-#ifndef CRUISER_HPP
-#define CRUISER_HPP
+    
+} // namespace BattleShip
 
-class cruiser {
-public:
-    cruiser();
-    cruiser(const cruiser& orig);
-    virtual ~cruiser();
-private:
 
-};
-
-#endif /* CRUISER_HPP */
-
+#endif

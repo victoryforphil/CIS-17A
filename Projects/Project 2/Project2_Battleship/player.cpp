@@ -5,6 +5,7 @@
 using namespace BSGame;
 
 Player::Player(std::string name){
+    
     mName = name;
     mIsBot = false;
 }
@@ -13,9 +14,21 @@ Player::Player(std::string name, bool isAi){
     mIsBot = isAi;
 }
 void Player::populateShips(){
-    int id=0;
-    for(int i=0;i<10;i++){
-        mShips[id] = new BSGame::Battleship(id);
+    int id=10;
+    for(int i=0;i<1;i++){
+        mShips[id-10] = new BSGame::Carrier(id);
+        id++;
+    }
+    for(int i=0;i<2;i++){
+        mShips[id-10] = new BSGame::Battleship(id);
+        id++;
+    }
+    for(int i=0;i<3;i++){
+        mShips[id-10] = new BSGame::Destroyer(id);
+        id++;
+    }
+    for(int i=0;i<4;i++){
+        mShips[id-10] = new BSGame::Cruiser(id);
         id++;
     }
 }
@@ -45,19 +58,29 @@ bool Player::checkPlace(BSVector2 start, BSVector2 end){
     for(int y=0;y< ((end.y() - start.y()) + 1); y++){
         for(int x=0;x<((end.x()-start.x()) + 1); x++){
             BSVector2 trueVec(start.x() + x, start.y() + y);
-            trueVec.clampMax(9);
+            trueVec.clampMax(14);
 
 
-            BSVector2 testVec = trueVec;
-                
+            BSVector2 testVec(trueVec.x(), trueVec.y());
+            
             // Loop through top left, middle and bottom right coorindates for tiles to ceheck
-            for(int i=0;i<3;i++){
+            for(int i=0;i<2;i++){
                 testVec.setX(testVec.x() + (-1 + i));
                 testVec.setY(testVec.y() + (-1 + i));
                 testVec.clampMin(0);
+                //std::cout << ">>DEBUG>> - Place Test: " << testVec.x()<<"/" << testVec.y() << " = " << getPrivateBoard()->getTile(testVec) << std::endl;
                 if(getPrivateBoard()->getTile(testVec) != Tile::EMPTY){
                     return false;
                 }
+
+                testVec.setX(testVec.x() - (-1 + i));
+                testVec.setY(testVec.y() - (-1 + i));
+                testVec.clampMin(0);
+                //std::cout << ">>DEBUG>> - Place Test: " << testVec.x()<<"/" << testVec.y() << " = " << getPrivateBoard()->getTile(testVec) << std::endl;
+                if(getPrivateBoard()->getTile(testVec) != Tile::EMPTY){
+                    return false;
+                }
+
             }
         }
     }
@@ -65,37 +88,40 @@ bool Player::checkPlace(BSVector2 start, BSVector2 end){
 }
 
 int Player::placeShip(Ship* ship){
-    BSVector2 start(std::rand() % 10, std::rand() % 10 ); 
-    int orient = std::rand() % 10;
-    
-    BSVector2 end = start;
+    BSVector2 start(std::rand() % 15, std::rand() % 15 ); 
+    int orient = std::rand() % 15;
+    //std::cout << ">>DEBUG>> - START: " << start.x()<<"/" << start.y() << " = " << ship->getName() << std::endl;
+    BSVector2 end(start.x(), start.y());
     
     if (orient < 6)
-    {
+    {   end.setY(end.y() +1);
         end.setX(end.x() + ship->getSize());
         
     }else{
-        end.setY(end.y() + ship->getSize());
+        end.setX(end.x() + 1);
+        end.setY(end.y() + ship->getSize() );
     }
 
+    if(end.x() >= 15 || end.y() >= 15 ){
+        return 0;
+    }
+   // std::cout << ">>DEBUG>> - END: " << end.x()<<"/" << end.y() << " = " << ship->getName() << std::endl;
 
     bool valid = checkPlace(start, end);
 
     if (valid)
     {
-        for (int y = 0; y < (end.y() - start.y()) + 1; y++)
+        BSVector2 trueVec(start.x(), start.y());
+        for (int y = 0; y < (end.y() - start.y()) ; y++)
         {
-            for (int x = 0; x < (end.x() - end.y()) + 1; x++)
+            for (int x = 0; x < (end.x() - start.x()) ; x++)
             {
-                BSVector2 trueVec(start.x() +x, start.y() + y);
+                trueVec.update(start.x() +x, start.y() + y);
+                //std::cout << ">>DEBUG>> - Delta X/Y: " << x<<"/" << y << " = " << ship->getName() << std::endl;
+                
                
-              
-                if (trueVec.x() >= 0 && trueVec.y() >= 0)
-                {   
-                    //td::cout << "~" << trueX << std::endl;
-                    getPrivateBoard()->setTile(trueVec, ship->getId());
-                    
-                }
+                //std::cout << ">>DEBUG>> - True Vec: "<< trueVec.x()<<"/" << trueVec.y() << " = " << ship->getName() << std::endl;
+                getPrivateBoard()->setTile(trueVec, ship->getId());
             }
         }
         return 1;
@@ -107,6 +133,108 @@ int Player::placeShip(Ship* ship){
 
 }
 
+
+void Player::genBoard(){
+    mBoard = new Board();
+    mHitBrd = new Board();
+
+    int cvCount = 0;
+    while (cvCount != 1)
+    {
+        std::cout << "\t - ... Attempting cv placement for player" << std::endl;
+        cvCount += placeShip(mShips[cvCount]);
+    }
+  
+    std::cout << "\t - Added Aircraft Carriers to board." << std::endl;
+
+    int bbCount = 0;
+    while (bbCount < 2)
+    {
+        std::cout << "\t - ... Attempting Battleships placement for player" << std::endl;
+        bbCount += placeShip(mShips[bbCount + 1]);
+    }
+   
+    std::cout << "\t - Added Battleships to board." << std::endl;
+    int ddCount = 0;
+    while (ddCount < 3)
+    {
+        std::cout << "\t - ... Attempting Destroyer placement for player" << std::endl;
+        ddCount += placeShip(mShips[ddCount + 3]);
+    }
+   
+    std::cout << "\t - Added Destroyers to board." << std::endl;
+    int crCount = 0;
+    while (crCount < 4)
+    {
+        std::cout << "\t - ... Attempting Cruiser placement for player" << std::endl;
+        crCount += placeShip(mShips[crCount + 6]);
+    }
+    
+    std::cout << "\t - Added Cruisers to board." << std::endl;
+}
+void Player::displayBoard(bool hitBoard){
+
+    Board* refBrd = getPrivateBoard();
+    if(hitBoard){
+        refBrd = getHitBoard();
+    }
+    for (int y = 0; y < 15; y++)
+    {
+        for (int x = 0; x < 15; x++)
+        {
+            
+            int tile = refBrd->getTile(BSVector2(x,y));
+
+            if (tile != 0 && tile >= 10 && !hitBoard)
+            {
+               // std::cout << " - - - " << "Converting " << tile << " to " << mShips[tile]->getName() << std::endl;
+                tile = mShips[tile - 10]->getType(); // Get Ship off ID (same as array index)
+            }
+            
+           
+            switch (tile)
+            {
+            case Tile::EMPTY:
+                std::cout << "`"
+                          << " ";
+                break;
+            case Tile::AIRCRAFT_CARRIER:
+                std::cout << "A"
+                          << " ";
+                break;
+            case Tile::BATTLESHIP:
+                std::cout << "B"
+                          << " ";
+                break;
+            case Tile::DESTROYER:
+                std::cout << "D"
+                          << " ";
+                break;
+            case Tile::CRUISER:
+                std::cout << "C"
+                          << " ";
+                break;
+            case Tile::HIT:
+                std::cout << "*"
+                          << " ";
+                break;
+            case Tile::MISS:
+                std::cout << "o"  << " ";
+                break;
+            default:    
+                std::cout << "! ";
+                break;
+
+            }
+           
+            
+
+            
+        }
+        std::cout << std::endl;
+    }
+    
+}
 Board* Player::getPrivateBoard(){
     return mBoard;
 }

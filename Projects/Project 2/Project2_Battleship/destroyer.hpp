@@ -1,27 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+#ifndef _BS_DESTORYER_H_
+#define _BS_DESTORYER_H_
 
-/* 
- * File:   destroyer.hpp
- * Author: Victo
- *
- * Created on July 28, 2020, 12:50 AM
- */
+#include "ship.hpp"
+namespace BSGame
+{
+    class Destroyer : public Ship
+    {
+    private:
+        /* data */
+    public:
+       Destroyer(int id) : Ship( id)
+    {
+        mId = id;
+        mName = "Destroyer";
+        mSize = 3;
+        mIsDead = false;
+        mType = Tile::DESTROYER;
+        mHits = 0;
+    }
+       // ~Battleship();
+    };
+    
+    
+    
 
-#ifndef DESTROYER_HPP
-#define DESTROYER_HPP
+    
+} // namespace BattleShip
 
-class destroyer {
-public:
-    destroyer();
-    destroyer(const destroyer& orig);
-    virtual ~destroyer();
-private:
 
-};
-
-#endif /* DESTROYER_HPP */
-
+#endif

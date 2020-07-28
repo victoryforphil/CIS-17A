@@ -34,5 +34,8 @@ int main(){
     
     std::cout << ">> Setting up board" << std::endl;
 
+    state->plyStates[0]->genBoard();
+    state->plyStates[0]->displayBoard(false);
+
     return 0;
 }

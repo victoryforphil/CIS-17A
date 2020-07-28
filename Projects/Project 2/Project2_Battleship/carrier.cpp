@@ -11,14 +11,3 @@
  * Created on July 28, 2020, 12:50 AM
  */
 
-#include "carrier.hpp"
-
-carrier::carrier() {
-}
-
-carrier::carrier(const carrier& orig) {
-}
-
-carrier::~carrier() {
-}
-

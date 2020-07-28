@@ -1,27 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+#ifndef _BS_CARRIER_H_
+#define _BS_CARRIER_H_
 
-/* 
- * File:   carrier.hpp
- * Author: Victo
- *
- * Created on July 28, 2020, 12:50 AM
- */
+#include "ship.hpp"
+namespace BSGame
+{
+    class Carrier : public Ship
+    {
+    private:
+        /* data */
+    public:
+       Carrier(int id) : Ship( id)
+    {
+        mId = id;
+        mName = "Carrier";
+        mSize = 5;
+        mIsDead = false;
+        mType = Tile::AIRCRAFT_CARRIER;
+        mHits = 0;
+    }
+       // ~Battleship();
+    };
+    
+    
+    
 
-#ifndef CARRIER_HPP
-#define CARRIER_HPP
+    
+} // namespace BattleShip
 
-class carrier {
-public:
-    carrier();
-    carrier(const carrier& orig);
-    virtual ~carrier();
-private:
 
-};
-
-#endif /* CARRIER_HPP */
-
+#endif
