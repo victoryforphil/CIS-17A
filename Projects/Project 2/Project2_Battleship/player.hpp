@@ -29,7 +29,7 @@ namespace BSGame
         void takeTurn();
         void printShips();
         bool checkPlace(BSVector2 start, BSVector2 end);
-
+        int placeShip(Ship* ship);
         Board* getPrivateBoard();
         Board* getHitBoard();
     };

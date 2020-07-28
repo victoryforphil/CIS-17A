@@ -1,6 +1,7 @@
 #include "player.hpp"
 #include <iostream>
 #include <iomanip>
+#include <random>
 using namespace BSGame;
 
 Player::Player(std::string name){
@@ -51,16 +52,59 @@ bool Player::checkPlace(BSVector2 start, BSVector2 end){
                 
             // Loop through top left, middle and bottom right coorindates for tiles to ceheck
             for(int i=0;i<3;i++){
-                testVec.setX(testVec.x() + (-1 + i)));
-                testVec.setY(testVec.y() + (-1 + i)));
+                testVec.setX(testVec.x() + (-1 + i));
+                testVec.setY(testVec.y() + (-1 + i));
                 testVec.clampMin(0);
-                if(getPrivateBoard()->getTile() != Tile::EMPTY){
+                if(getPrivateBoard()->getTile(testVec) != Tile::EMPTY){
                     return false;
                 }
             }
         }
     }
     return true;
+}
+
+int Player::placeShip(Ship* ship){
+    BSVector2 start(std::rand() % 10, std::rand() % 10 ); 
+    int orient = std::rand() % 10;
+    
+    BSVector2 end = start;
+    
+    if (orient < 6)
+    {
+        end.setX(end.x() + ship->getSize());
+        
+    }else{
+        end.setY(end.y() + ship->getSize());
+    }
+
+
+    bool valid = checkPlace(start, end);
+
+    if (valid)
+    {
+        for (int y = 0; y < (end.y() - start.y()) + 1; y++)
+        {
+            for (int x = 0; x < (end.x() - end.y()) + 1; x++)
+            {
+                BSVector2 trueVec(start.x() +x, start.y() + y);
+               
+              
+                if (trueVec.x() >= 0 && trueVec.y() >= 0)
+                {   
+                    //td::cout << "~" << trueX << std::endl;
+                    getPrivateBoard()->setTile(trueVec, ship->getId());
+                    
+                }
+            }
+        }
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
 }
 
 Board* Player::getPrivateBoard(){
