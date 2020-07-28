@@ -21,6 +21,8 @@ namespace BSGame{
         BSVector2 setX(int x);
         BSVector2 setY(int y);
         BSVector2 update(int x, int y);
+        BSVector2 clampMin(int min);
+        BSVector2 clampMax(int max);
     };
     
 };

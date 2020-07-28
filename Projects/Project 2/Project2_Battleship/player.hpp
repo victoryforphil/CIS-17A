@@ -16,6 +16,10 @@ namespace BSGame
         std::string mName;
         bool mIsBot = false;
         Ship* mShips[10];
+        Board* mBoard;
+        Board* mHitBrd;
+
+  
 
     public:
         Player(std::string name);
@@ -24,6 +28,10 @@ namespace BSGame
         void print();
         void takeTurn();
         void printShips();
+        bool checkPlace(BSVector2 start, BSVector2 end);
+
+        Board* getPrivateBoard();
+        Board* getHitBoard();
     };
 }; // namespace BSGame
 

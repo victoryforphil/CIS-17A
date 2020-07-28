@@ -15,7 +15,9 @@ struct GameState
     int turn = 0;
 };
 int main(){
-
+    std::cout << std::endl;
+    std::cout << ">> Battle Ship | CIS-17A Project #2 | Vesion: 0.1 | Version Note: MVP Class Port" << std::endl;
+    std::cout << std::endl;
     std::cout << ">> Generating Player Objects..." << std::endl;
     GameState* state;
 
@@ -30,6 +32,7 @@ int main(){
     
     state->plyStates[0]->printShips();
     
+    std::cout << ">> Setting up board" << std::endl;
 
     return 0;
 }
