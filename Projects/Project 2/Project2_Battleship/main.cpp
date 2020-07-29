@@ -14,6 +14,8 @@ struct GameState
     BSGame::Player* plyStates[2];
     int turn = 0;
 };
+
+
 int main(){
     std::cout << std::endl;
     std::cout << ">> Battle Ship | CIS-17A Project #2 | Vesion: 0.1 | Version Note: MVP Class Port" << std::endl;
@@ -38,13 +40,14 @@ int main(){
     state->plyStates[1]->genBoard();
     state->plyStates[0]->displayBoard(false);
 
-    bool hasWon = false;
-    while (hasWon == false)
+    bool bothAlive = true;
+    while (bothAlive)
     {
-        state->plyStates[state->turn]->takeTurn();
+        state->plyStates[state->turn]->takeTurn(state->plyStates[state->turn == 0 ? 1:0]);
+        state->turn = state->turn == 0 ? 1:0;
         //takeTurn(state);
         //saveState(state);
-        //hasWon = checkWin(state.plyStates[0]) && checkWin(state.plyStates[1]);
+        bothAlive = state->plyStates[0]->isAlive() && state->plyStates[1]->isAlive();
     }
 
     return 0;

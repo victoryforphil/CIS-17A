@@ -30,7 +30,7 @@ namespace BSGame
         void populateShips();
         void print();
         void getChoice(BSVector2& result);
-        void takeTurn();
+        void takeTurn(Player* othPlyr);
         void printShips();
         bool checkPlace(BSVector2 start, BSVector2 end);
         int placeShip(Ship* ship);
@@ -38,9 +38,12 @@ namespace BSGame
         void displayBoard(bool hitBoard);
 
         void genBoard();
+        bool isAlive();
 
         Board* getPrivateBoard();
         Board* getHitBoard();
+        std::string getName();
+        Ship* getShip(int id);
     };
 }; // namespace BSGame
 

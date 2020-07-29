@@ -25,6 +25,7 @@ namespace BSGame
         int getSize();
         int getId();
         int getType();
+        void hit();
         std::string getName();
     };
     

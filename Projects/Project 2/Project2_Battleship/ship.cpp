@@ -24,7 +24,12 @@ void Ship::print(){
     std::cout << std::left << std::setw(5) << std::setfill(' ') << getId() << std::setw(32) << getName() << std::setw(1) << getHealth() << "/" << getSize() << std::endl;
     //std::cout << "SHIP!" << std::endl;
 }
-
+void Ship::hit(){
+    mHits++;
+    if(getHealth() <= 0){
+        mIsDead = true;
+    }
+}
 int Ship::getType(){
     return mType;
 }
