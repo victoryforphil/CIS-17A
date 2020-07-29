@@ -4,6 +4,10 @@
 
 namespace BSGame
 {
+    /**
+     * @brief Tile enum to easily define tile types
+     * 
+     */
     enum Tile
     {
         EMPTY = 0,
@@ -15,6 +19,10 @@ namespace BSGame
         MISS = 6
     };
 
+    /**
+     * @brief Game board representation (2d array, 15x15, ints)
+     * 
+     */
     class Board
     {
     private:
@@ -22,9 +30,31 @@ namespace BSGame
 
     public:
         Board();
+        /**
+         * @brief Get the tile value at a given location
+         * 
+         * @param vector the location to look up
+         * @return int tile value
+         */
         int getTile(BSVector2 vector);
+        /**
+         * @brief Get the Board object
+         * 
+         * @return int 
+         */
         int getBoard();
+        /**
+         * @brief Set all values of the board to one value
+         * 
+         * @param defaultVal value to set the board too
+         */
         void resetBoard(int defaultVal);
+        /**
+         * @brief Set the Tile value at a given location
+         * 
+         * @param vector location to set
+         * @param value tile value to set
+         */
         void setTile(BSVector2 vector, int value);
         
         ~Board();

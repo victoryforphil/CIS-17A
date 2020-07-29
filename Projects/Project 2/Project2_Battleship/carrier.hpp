@@ -3,7 +3,14 @@
 
 #include "ship.hpp"
 namespace BSGame
-{
+{   
+    /**
+     * @brief Carrier ship class. Values: \n
+     * name = Carrier \n
+     * size = 5 \n
+     * type = Tile::AIRCRAFT_CARRIER \n
+     * 
+     */
     class Carrier : public Ship
     {
     private:

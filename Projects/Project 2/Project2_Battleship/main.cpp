@@ -8,7 +8,10 @@
 
 #include "player.hpp"
 
-
+/**
+ * @brief Master GameState Struct
+ * 
+ */
 struct GameState
 {
     BSGame::Player* plyStates[2];
@@ -18,7 +21,7 @@ struct GameState
 
 int main(){
     std::cout << std::endl;
-    std::cout << ">> Battle Ship | CIS-17A Project #2 | Vesion: 0.1 | Version Note: MVP Class Port" << std::endl;
+    std::cout << ">> Battle Ship | CIS-17A Project #2 | Vesion: 0.2 | Version Note: Better Displaying" << std::endl;
     std::cout << std::endl;
     std::cout << ">> Generating Player Objects..." << std::endl;
     GameState* state;

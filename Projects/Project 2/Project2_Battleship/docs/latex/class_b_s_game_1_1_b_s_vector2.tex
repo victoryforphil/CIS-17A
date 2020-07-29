@@ -1,0 +1,168 @@
+\doxysection{B\+S\+Game\+::B\+S\+Vector2 Class Reference}
+\label{class_b_s_game_1_1_b_s_vector2}\index{BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ B\+S\+Vector2} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} object. \end{DoxyCompactList}\item 
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a30c291a70d807e27fe18b449f035dd2e}} 
+bool {\bfseries operator==} (\textbf{ B\+S\+Vector2} const \&obj)
+\item 
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_af3d5bd450253b9871ccbf7015daf0f9c}} 
+bool {\bfseries operator!=} (\textbf{ B\+S\+Vector2} const \&obj)
+\item 
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a1f5f57a4c1d5eaae5486660baf2f76c5}} 
+\textbf{ B\+S\+Vector2} {\bfseries operator=} (\textbf{ B\+S\+Vector2} const \&obj)
+\item 
+\textbf{ B\+S\+Vector2} \textbf{ random} ()
+\begin{DoxyCompactList}\small\item\em Generate a random vector. \end{DoxyCompactList}\item 
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a3d4d07898d3d2b35d4f88e1541b2663b}} 
+int {\bfseries y} ()
+\item 
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a0b7d779f321ca7bc3f3027faa84f8352}} 
+int {\bfseries x} ()
+\item 
+\textbf{ B\+S\+Vector2} \textbf{ setX} (int x)
+\begin{DoxyCompactList}\small\item\em Sets the X value of the vector. \end{DoxyCompactList}\item 
+\textbf{ B\+S\+Vector2} \textbf{ setY} (int y)
+\begin{DoxyCompactList}\small\item\em Sets the Y value of the vector. \end{DoxyCompactList}\item 
+\textbf{ B\+S\+Vector2} \textbf{ update} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Updates the x and y values of the vector at once. \end{DoxyCompactList}\item 
+\textbf{ B\+S\+Vector2} \textbf{ clamp\+Min} (int min)
+\begin{DoxyCompactList}\small\item\em Clamps the values of the vector to a minimum for example\+: clamp\+Min(0) -\/$>$ x=5 y=-\/1 -\/$>$ x=5 y=0. \end{DoxyCompactList}\item 
+\textbf{ B\+S\+Vector2} \textbf{ clamp\+Max} (int max)
+\begin{DoxyCompactList}\small\item\em Clamps the values of the vector to a minimum for example\+: clamp\+Max(4) -\/$>$ x=5 y=-\/1 -\/$>$ x=4 y=-\/1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a1c81bc52a19b0b939685f96d9ef0216e}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!BSVector2@{BSVector2}}
+\index{BSVector2@{BSVector2}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{BSVector2()}
+{\footnotesize\ttfamily B\+S\+Vector2\+::\+B\+S\+Vector2 (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & initial x value \\
+\hline
+{\em y} & initial y value \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_aea1986773be108a4b083d5a303fd0d01}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!clampMax@{clampMax}}
+\index{clampMax@{clampMax}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{clampMax()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::clamp\+Max (\begin{DoxyParamCaption}\item[{int}]{max }\end{DoxyParamCaption})}
+
+
+
+Clamps the values of the vector to a minimum for example\+: clamp\+Max(4) -\/$>$ x=5 y=-\/1 -\/$>$ x=4 y=-\/1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} updated vector 
+\end{DoxyReturn}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_ad3968847908ad02cad679506e548ad2c}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!clampMin@{clampMin}}
+\index{clampMin@{clampMin}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{clampMin()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::clamp\+Min (\begin{DoxyParamCaption}\item[{int}]{min }\end{DoxyParamCaption})}
+
+
+
+Clamps the values of the vector to a minimum for example\+: clamp\+Min(0) -\/$>$ x=5 y=-\/1 -\/$>$ x=5 y=0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} updated vector 
+\end{DoxyReturn}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a37f250aabac36c6ee1b2180e6b2c17e7}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!random@{random}}
+\index{random@{random}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{random()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate a random vector. 
+
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} generates a random vector 
+\end{DoxyReturn}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a42dc7cecfe7a1fc2dd1b3b45b96b3cf1}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!setX@{setX}}
+\index{setX@{setX}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{setX()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::setX (\begin{DoxyParamCaption}\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+
+Sets the X value of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ int of new x value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} the updated vector (this) 
+\end{DoxyReturn}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_a35082a355c1e5494a0aeae004dabee7e}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!setY@{setY}}
+\index{setY@{setY}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{setY()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::setY (\begin{DoxyParamCaption}\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Sets the Y value of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y} & -\/ int of new y value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} the updated vector (this) 
+\end{DoxyReturn}
+\mbox{\label{class_b_s_game_1_1_b_s_vector2_aa2288dfe08631468c34777bff46ae329}} 
+\index{BSGame::BSVector2@{BSGame::BSVector2}!update@{update}}
+\index{update@{update}!BSGame::BSVector2@{BSGame::BSVector2}}
+\doxysubsubsection{update()}
+{\footnotesize\ttfamily \textbf{ B\+S\+Vector2} B\+S\+Vector2\+::update (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Updates the x and y values of the vector at once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & new x value \\
+\hline
+{\em y} & new y value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{B\+S\+Vector2}{p.}{class_b_s_game_1_1_b_s_vector2} updated vector 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+math.\+hpp\item 
+math.\+cpp\end{DoxyCompactItemize}

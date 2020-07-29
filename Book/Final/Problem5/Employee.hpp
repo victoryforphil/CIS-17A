@@ -13,7 +13,9 @@
 
 #ifndef EMPLOYEE_HPP
 #define EMPLOYEE_HPP
-
+#include <string>
+#include <cstring>
+#include <iostream>
 class Employee {
 public:
 		Employee(char[],char[],float);  //Constructor

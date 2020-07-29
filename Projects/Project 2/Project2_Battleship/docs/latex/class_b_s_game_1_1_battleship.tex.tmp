@@ -1,0 +1,22 @@
+\doxysection{B\+S\+Game\+::Battleship Class Reference}
+\label{class_b_s_game_1_1_battleship}\index{BSGame::Battleship@{BSGame::Battleship}}
+
+
+Inheritance diagram for B\+S\+Game\+::Battleship\+:
+% FIG 0
+
+
+Collaboration diagram for B\+S\+Game\+::Battleship\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{class_b_s_game_1_1_battleship_af96b38141b7854da7eac9c42d1640f37}} 
+{\bfseries Battleship} (int id)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+battleship.\+hpp\end{DoxyCompactItemize}

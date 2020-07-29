@@ -4,6 +4,13 @@
 #include "ship.hpp"
 namespace BSGame
 {
+    /**
+     * @brief Battleship ship class. Values: \n
+     * name = Battleship \n
+     * size = 4 \n
+     * type = Tile::BATTLESHIP \n
+     * 
+     */
     class Battleship : public Ship
     {
     private:

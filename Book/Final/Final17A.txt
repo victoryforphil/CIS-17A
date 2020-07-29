@@ -349,21 +349,27 @@ specification
 4)  The Set procedures simply write and return the obvious
 	properties.
 5)  The toString procedure prints all the properties.
-6)  The getGrossPay procedure calculates straight time for hours
+
+6)  The   procedure calculates straight time for hours
 w	orked < 40, time and 1/2 for hours worked < 50 but greater than
 	40, double time for all hours above 50.  The inputs to this
 	routine are the hourly rate and the hours worked.
+
 7)  The net pay routine returns the gross pay subtracting
 	off any taxes.  Realize that the Tax procedure is utilized
 	but these taxes are progressive rates for income above the
-	cutoff limit as described in 3).  Taxes are calculated for
+	cutoff limit as described in 3).  
+	
+	Taxes are calculated for
 	10% below 500, 20% for amounts between 500 and 1000 and
 	finally anything above 1000 is calculated at the 30% rate.
+
 8)  The Hoursworked must be > 0 and < 84
+
 9)  The Hourlyrate must be > 0 and < 200
+
 10) The calculate pay routine returns the net pay.
-	return getNetPay(getGrossPay(setHourlyRate(x)
-		,setHoursWorked(y)));
+	return getNetPay(getGrossPay(setHourlyRate(x),setHoursWorked(y)));
 
 Example Input
 	Employee Mark("Mark","Boss",215.50);
