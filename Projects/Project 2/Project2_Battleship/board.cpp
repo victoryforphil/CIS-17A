@@ -11,10 +11,10 @@ int Board::getTile(BSVector2 vector){
     return mBoard[vector.y()][vector.x()];
 }
 
-void Board::resetBoard(int defaultVal){
+void Board::resetBoard(int val){
     for(int y=0;y<10;y++){
         for(int x=0;x<10;x++){
-            setTile(BSVector2(x,y),defaultVal);
+            setTile(BSVector2(x,y),val);
         }
     }
 }

@@ -88,7 +88,7 @@ namespace BSGame
          * 
          * @param hitBoard display the hitboard
          */
-        void displayBoard(bool hitBoard);
+        void displayBoard(bool hitBrd);
 
         /**
          * @brief Generate a initial board with random ship placement

@@ -37,7 +37,7 @@ int main(int argc, char **argv)
         cout << *ch2;
         ch2++;
     }
-
+    
     infile.close();
 
     cout << endl;

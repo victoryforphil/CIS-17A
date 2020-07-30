@@ -90,13 +90,13 @@ void Player::takeTurn(Player* othPlyr)
         if (tile == Tile::EMPTY)
         {
             std::cout << "MISS!" << std::endl;
-            getHitBoard()->setTile(choice, MISS);
+            gethitBrd()->setTile(choice, MISS);
             turnOvr = true;
         }
         else
         {
             std::cout << "HIT!" << std::endl;
-            getHitBoard()->setTile(choice, HIT);
+            gethitBrd()->setTile(choice, HIT);
             std::cout << tile << std::endl;
 
 
@@ -112,19 +112,19 @@ void Player::takeTurn(Player* othPlyr)
     }
 }
 bool Player::isAlive(){
-    bool bShipAlive = false;
+    bool bShpAv = false;
 
     for (int i = 0; i < 10; i++)
     {
         Ship* _ship = mShips[i];
         if (_ship->getDead() == false)
         {
-            bShipAlive = true;
-            return bShipAlive;
+            bShpAv = true;
+            return bShpAv;
         }
     }
 
-    return bShipAlive;
+    return bShpAv;
 }
 void Player::getChoice(BSVector2 &choice)
 {
@@ -273,13 +273,13 @@ void Player::genBoard()
 
     std::cout << "\t - Added Cruisers to board." << std::endl;
 }
-void Player::displayBoard(bool hitBoard)
+void Player::displayBoard(bool hitBrd)
 {
 
     Board *refBrd = getPrivateBoard();
-    if (hitBoard)
+    if (hitBrd)
     {
-        refBrd = getHitBoard();
+        refBrd = gethitBrd();
     }
     for (int y = 0; y < 15; y++)
     {
@@ -288,7 +288,7 @@ void Player::displayBoard(bool hitBoard)
 
             int tile = refBrd->getTile(BSVector2(x, y));
 
-            if (tile != 0 && tile >= 10 && !hitBoard)
+            if (tile != 0 && tile >= 10 && !hitBrd)
             {
                 // std::cout << " - - - " << "Converting " << tile << " to " << mShips[tile]->getName() << std::endl;
                 tile = mShips[tile - 10]->getType(); // Get Ship off ID (same as array index)
@@ -336,7 +336,7 @@ Board *Player::getPrivateBoard()
 {
     return mBoard;
 }
-Board *Player::getHitBoard()
+Board *Player::gethitBrd()
 {
     return mHitBrd;
 }

@@ -48,7 +48,7 @@ namespace BSGame
          * 
          * @param defaultVal value to set the board too
          */
-        void resetBoard(int defaultVal);
+        void resetBoard(int val);
         /**
          * @brief Set the Tile value at a given location
          * 

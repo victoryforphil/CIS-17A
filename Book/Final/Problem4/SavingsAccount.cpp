@@ -71,7 +71,7 @@ float SavingsAccount::Total(float intrest, int time){
 float SavingsAccount::TotalRecursive(float intrest, int time){
 
     if(time > 0){
-        return TotalRecursive(intrest * time, time-1);
+        return TotalRecursive( , time-1);
     }else{
         return Balance + intrest;
     }
