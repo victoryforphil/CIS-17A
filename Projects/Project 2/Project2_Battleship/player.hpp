@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <exception>
 #include "player.hpp"
 #include "board.hpp"
 
@@ -10,23 +11,30 @@
 #include "cruiser.hpp"
 #include "destroyer.hpp"
 #include "battleship.hpp"
+
 namespace BSGame
 {
     /**
      * @brief Player Class, responsible for more game logic
      * 
      */
+    struct InvalidInput : public std::exception
+    {
+        const char *what() const throw()
+        {
+            return "Invalid Coordinate Provided";
+        }
+    };
+
     class Player
     {
-        
-    private:
-        std::string mName; 
-        bool mIsBot = false;
-        Ship* mShips[10];
-        Board* mBoard;
-        Board* mHitBrd;
 
-  
+    private:
+        std::string mName;
+        bool mIsBot = false;
+        Ship *mShips[10];
+        Board *mBoard;
+        Board *mHitBrd;
 
     public:
         /**
@@ -42,25 +50,32 @@ namespace BSGame
          * @param isAi  is the play AI controlled
          */
         Player(std::string name, bool isAi);
+
+        ~Player()
+        {
+            delete[] mShips;
+            delete mBoard;
+            delete mHitBrd;
+        }
         /**
          * @brief Generate all required ship objects
          * 
          */
         void populateShips();
-        
+
         void print();
         /**
          * @brief Get a coordinate selection from the use
          * 
          * @param result refrence to the output result
          */
-        void getChoice(BSVector2& result);
+        void getChoice(BSVector2<int> &result);
         /**
          * @brief Take a turn in the game
          * 
          * @param othPlyr other components, used to check for hits/misses
          */
-        void takeTurn(Player* othPlyr);
+        void takeTurn(Player *othPlyr);
         /**
          * @brief Print the current ships statistics
          * 
@@ -74,15 +89,15 @@ namespace BSGame
          * @return true is a valid placement
          * @return false is an invalid placement
          */
-        bool checkPlace(BSVector2 start, BSVector2 end);
+        bool checkPlace(BSVector2<int> start, BSVector2<int> end);
         /**
          * @brief Places a ship in randomly selected spot
          * 
          * @param ship ship refrence to place
          * @return int 1 = successfully placed, 0 = unsuccessful placement
          */
-        int placeShip(Ship* ship);
-        
+        int placeShip(Ship *ship);
+
         /**
          * @brief prints a board, either the ship board (private board) or the hit board
          * 
@@ -108,13 +123,13 @@ namespace BSGame
          * 
          * @return Board* 
          */
-        Board* getPrivateBoard();
+        Board *getPrivateBoard();
         /**
          * @brief Get the Hit Board object
          * 
          * @return Board* 
          */
-        Board* getHitBoard();
+        Board *getHitBoard();
         std::string getName();
         /**
          * @brief Get the Ship object
@@ -122,7 +137,7 @@ namespace BSGame
          * @param id the id of the ship
          * @return Ship* 
          */
-        Ship* getShip(int id);
+        Ship *getShip(int id);
     };
 }; // namespace BSGame
 

@@ -13,68 +13,86 @@
 
 #include "SavingsAccount.hpp"
 
-SavingsAccount::SavingsAccount(float balance) {
+SavingsAccount::SavingsAccount(float balance)
+{
     Balance = 0;
-    if(balance > 0){
+    if (balance > 0)
+    {
         Balance = balance;
     }
     FreqDeposit = 0;
     FreqWithDraw = 0;
 }
 
-void SavingsAccount::Transaction(float amount){
-    if(amount > 0){
-        
-        Deposit(amount);
-        
-    }else{
-        
-        Withdraw(amount);
-        
-    }
+void SavingsAccount::Transaction(float amount)
+{
+    if (amount > 0)
+    {
 
-    
+        Deposit(amount);
+    }
+    else
+    {
+
+        Withdraw(amount);
+    }
 }
 
-float SavingsAccount::Deposit(float amount){
+float SavingsAccount::Deposit(float amount)
+{
     Balance += amount;
     FreqDeposit++;
     return Balance;
 }
 
-float SavingsAccount::Withdraw(float amount){
-    if(Balance + amount >= 0){
+float SavingsAccount::Withdraw(float amount)
+{
+    if (Balance + amount >= 0)
+    {
         Balance = Balance + amount;
         FreqWithDraw++;
-    }else{
+    }
+    else
+    {
         std::cout << "WithDraw not Allowed" << std::endl;
     }
     return Balance;
 }
 
-void SavingsAccount::toString(){
-    std::cout << "Account Statement: " <<
-        "\n\t-Balance $: " << Balance << 
-        "\n\t-FreqWithDraw $: " << FreqWithDraw << 
-        "\n\t-FreqDeposit $: " << FreqDeposit << std::endl;
+std::string SavingsAccount::toString()
+{
+    std::string out = "Account Statement: ";
+    out += "\n\t-Balance $: ";
+    out += std::to_string(Balance);
+    out += "\n\t-FreqWithDraw $: ";
+    out += std::to_string(FreqWithDraw);
+    out += "\n\t-FreqDeposit $: ";
+    out += std::to_string(FreqDeposit);
+
+    std::cout << out << std::endl;
+    return out;
 }
 
-float SavingsAccount::Total(float intrest, int time){
+float SavingsAccount::Total(float intrest, int time)
+{
 
     float tmpBal = Balance;
-    for(int i=0;i<time;i++){
-        tmpBal +=  tmpBal*intrest;
+    for (int i = 0; i < time; i++)
+    {
+        tmpBal += tmpBal * intrest;
     }
 
     return tmpBal;
 }
-float SavingsAccount::TotalRecursive(float intrest, int time){
+float SavingsAccount::TotalRecursive(float intrest, int time)
+{
 
-    if(time > 0){
-        return TotalRecursive( , time-1);
-    }else{
+    if (time > 0)
+    {
+        return TotalRecursive(intrest, time - 1);
+    }
+    else
+    {
         return Balance + intrest;
     }
-    
 }
-

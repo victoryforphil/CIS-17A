@@ -22,7 +22,10 @@ namespace BSGame
         bool mIsDead;
     public:
         Ship(int id){mId = id;};
-        ~Ship(){};
+        ~Ship(){mId = 0;};
+
+        virtual void SetInfo() = 0;
+
         /**
          * @brief Get the Health value (size-hits)
          * 

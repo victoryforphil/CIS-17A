@@ -6,11 +6,12 @@
 #include <string>
 namespace BSGame
 {
+    template <class T>
     class BSVector2
     {
     private:
-        int mX;
-        int mY;
+        T mX;
+        T mY;
 
     public:
         /**
@@ -19,35 +20,56 @@ namespace BSGame
          * @param x initial x value
          * @param y initial y value
          */
-        BSVector2(int x, int y);
+        BSVector2(T x, T y)
+        {
+           
+            update(x, y);
+        }
+        BSVector2(BSVector2 &old)
+        {
+            update(old.x(), old.y());
+        }
 
-        bool operator==(BSVector2 const &obj);
-        bool operator!=(BSVector2 const &obj);
-        BSVector2 operator=(BSVector2 const &obj);
+        bool operator==(BSVector2 const &obj)
+        {
+            return (obj.mX == mX) && (obj.mY == mY);
+        }
+        bool operator!=(BSVector2 const &obj)
+        {
+            return (obj.mX != mX) || (obj.mY != mY);
+        }
+        BSVector2 operator=(BSVector2 const &obj)
+        {
+            mY = obj.mY;
+            mX = obj.mX;
+            return *this;
+        }
 
-        /**
-         * @brief Generate a random vector
-         * 
-         * @return BSVector2 generates a random vector
-         */
-        BSVector2 random(); 
-
-        int y();
-        int x();
+        T y(){return mY;} 
+        
+        T x(){return mX;}
         /**
          * @brief Sets the X value of the vector
          * 
          * @param x - int of new x value
          * @return BSVector2 the updated vector (this)
          */
-        BSVector2 setX(int x);
+        void setX(T x)
+        {
+            mX = x;
+           
+        }
         /**
          * @brief Sets the Y value of the vector
          * 
          * @param y - int of new y value
          * @return BSVector2 the updated vector (this)
          */
-        BSVector2 setY(int y);
+        void setY(T y)
+        {
+            mY = y;
+            
+        }
 
         /**
          * @brief Updates the x and y values of the vector at once
@@ -56,7 +78,13 @@ namespace BSGame
          * @param y new y value
          * @return BSVector2 updated vector
          */
-        BSVector2 update(int x, int y);
+        void update(T x, T y)
+        {
+            
+           setX(x);
+           setY(y);
+         
+        }
         /**
          * @brief Clamps the values of the vector to a minimum
          * for example: clampMin(0) -> x=5 y=-1 -> x=5 y=0
@@ -64,7 +92,12 @@ namespace BSGame
          * @param min 
          * @return BSVector2 updated vector
          */
-        BSVector2 clampMin(int min);
+        BSVector2 clampMin(int min)
+        {
+            setX(std::max(min, x()));
+            setY(std::max(min, y()));
+            return *this;
+        }
         /**
          * @brief Clamps the values of the vector to a minimum
          * for example: clampMax(4) -> x=5 y=-1 -> x=4 y=-1
@@ -72,9 +105,12 @@ namespace BSGame
          * @param max 
          * @return BSVector2 updated vector
          */
-        BSVector2 clampMax(int max);
-
-  
+        BSVector2 clampMax(int max)
+        {
+            setX(std::min(max, x()));
+            setY(std::min(max, y()));
+            return *this;
+        }
     };
 
 }; // namespace BSGame

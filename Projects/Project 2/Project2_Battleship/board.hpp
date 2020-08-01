@@ -36,7 +36,7 @@ namespace BSGame
          * @param vector the location to look up
          * @return int tile value
          */
-        int getTile(BSVector2 vector);
+        int getTile(BSVector2<int> vector);
         /**
          * @brief Get the Board object
          * 
@@ -55,7 +55,7 @@ namespace BSGame
          * @param vector location to set
          * @param value tile value to set
          */
-        void setTile(BSVector2 vector, int value);
+        void setTile(BSVector2<int> vector, int value);
         
         ~Board();
     };

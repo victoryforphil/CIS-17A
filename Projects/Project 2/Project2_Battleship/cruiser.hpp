@@ -16,23 +16,18 @@ namespace BSGame
     private:
         /* data */
     public:
-       Cruiser(int id) : Ship( id)
-    {
-        mId = id;
-        mName = "Cruiser";
-        mSize = 2;
-        mIsDead = false;
-        mType = CRUISER;
-        mHits = 0;
-    }
-       // ~Battleship();
+        Cruiser(int id) : Ship(id){}
+        void SetInfo()
+        {
+            mName = "Cruiser";
+            mSize = 2;
+            mIsDead = false;
+            mType = CRUISER;
+            mHits = 0;
+        }
+        // ~Battleship();
     };
-    
-    
-    
 
-    
-} // namespace BattleShip
-
+} // namespace BSGame
 
 #endif

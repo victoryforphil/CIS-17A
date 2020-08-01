@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char **argv)
 {
 
-    Example Input
+
         Employee Mark("Mark", "Boss", 215.50);
     Mark.setHoursWorked(-3);
     Mark.toString();

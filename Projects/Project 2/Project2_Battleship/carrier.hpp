@@ -16,9 +16,9 @@ namespace BSGame
     private:
         /* data */
     public:
-       Carrier(int id) : Ship( id)
+        Carrier(int id) : Ship(id){};
+    void SetInfo()
     {
-        mId = id;
         mName = "Carrier";
         mSize = 5;
         mIsDead = false;

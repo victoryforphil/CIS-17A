@@ -21,6 +21,7 @@ void Player::populateShips()
     for (int i = 0; i < 1; i++)
     {
         mShips[id - 10] = new BSGame::Carrier(id);
+
         id++;
     }
     for (int i = 0; i < 2; i++)
@@ -37,6 +38,10 @@ void Player::populateShips()
     {
         mShips[id - 10] = new BSGame::Cruiser(id);
         id++;
+    }
+    for (int i = 0; i < 10; i++)
+    {
+        mShips[i]->SetInfo();
     }
 }
 
@@ -57,66 +62,70 @@ void Player::printShips()
     }
 }
 
-void Player::takeTurn(Player* othPlyr)
+void Player::takeTurn(Player *othPlyr)
 {
     bool turnOvr = false;
-  
+
     while (!turnOvr)
     {
         std::cout << std::endl;
         std::cout << std::endl;
-        if(!mIsBot){
-             std::cout << "Your turn!" << std::endl;
+        if (!mIsBot)
+        {
+            std::cout << "Your turn!" << std::endl;
 
             std::cout << "Your Hit Board: " << std::endl;
             displayBoard(true);
             printShips();
-        }else{
+        }
+        else
+        {
             std::cout << "Computer's Turn" << std::endl;
         }
 
-        BSVector2 choice(0,0);
-        if(!mIsBot){
+        BSVector2<int> choice(0, 0);
+        if (!mIsBot)
+        {
             getChoice(choice);
-        }else{
-           
+        }
+        else
+        {
+
             choice.setX(std::rand() % 15);
             choice.setY(std::rand() % 15);
         }
 
-
         int tile = othPlyr->getPrivateBoard()->getTile(choice);
-       
+
         if (tile == Tile::EMPTY)
         {
             std::cout << "MISS!" << std::endl;
-            gethitBrd()->setTile(choice, MISS);
+            getHitBoard()->setTile(choice, MISS);
             turnOvr = true;
         }
         else
         {
             std::cout << "HIT!" << std::endl;
-            gethitBrd()->setTile(choice, HIT);
+            getHitBoard()->setTile(choice, HIT);
             std::cout << tile << std::endl;
-
 
             othPlyr->getShip(tile - 10)->hit();
             std::cout << "You Hit: " << othPlyr->getShip(tile - 10)->getName();
-            
-            if ( othPlyr->getShip(tile - 10)->getDead())
+
+            if (othPlyr->getShip(tile - 10)->getDead())
             {
                 std::cout << "You sunk: " << othPlyr->getShip(tile - 10)->getName();
             }
-            
         }
     }
 }
-bool Player::isAlive(){
+bool Player::isAlive()
+{
     bool bShpAv = false;
 
     for (int i = 0; i < 10; i++)
     {
-        Ship* _ship = mShips[i];
+        Ship *_ship = mShips[i];
         if (_ship->getDead() == false)
         {
             bShpAv = true;
@@ -126,28 +135,51 @@ bool Player::isAlive(){
 
     return bShpAv;
 }
-void Player::getChoice(BSVector2 &choice)
+void Player::getChoice(BSVector2<int> &choice)
 {
     std::cout << "Please select X/Y Coordinates to strike: " << std::endl;
     int val;
     do
     {
-     
-        std::cout << "X (1-15):";
-        std::cin >> val;
-        choice.setX(val - 1);
+
+        try
+        {
+            std::cout << "X (1-15):";
+            std::cin >> val;
+            choice.setX(val - 1);
+            if (val < 1 || val > 15)
+            {
+                throw InvalidInput();
+            }
+        }
+        catch (InvalidInput ex)
+        {
+            std::cout << "Input Exception: " << ex.what() << std::endl;
+        }
+
     } while (val < 1 || val > 15);
     val = 0;
     do
     {
-        
-        std::cout << "Y (1-15):";
-        std::cin >> val;
-        choice.setY(val - 1);
+
+        try
+        {
+            std::cout << "Y (1-15):";
+            std::cin >> val;
+            choice.setY(val - 1);
+            if (val < 1 || val > 15)
+            {
+                throw InvalidInput();
+            }
+        }
+        catch (InvalidInput ex)
+        {
+            std::cout << "Input Exception: " << ex.what() << std::endl;
+        }
     } while (val < 1 || val > 15);
 }
 
-bool Player::checkPlace(BSVector2 start, BSVector2 end)
+bool Player::checkPlace(BSVector2<int> start, BSVector2<int> end)
 {
     start.clampMin(0);
 
@@ -155,10 +187,10 @@ bool Player::checkPlace(BSVector2 start, BSVector2 end)
     {
         for (int x = 0; x < ((end.x() - start.x()) + 1); x++)
         {
-            BSVector2 trueVec(start.x() + x, start.y() + y);
+            BSVector2<int> trueVec(start.x() + x, start.y() + y);
             trueVec.clampMax(14);
 
-            BSVector2 testVec(trueVec.x(), trueVec.y());
+            BSVector2<int> testVec(trueVec.x(), trueVec.y());
 
             // Loop through top left, middle and bottom right coorindates for tiles to ceheck
             for (int i = 0; i < 2; i++)
@@ -188,10 +220,10 @@ bool Player::checkPlace(BSVector2 start, BSVector2 end)
 
 int Player::placeShip(Ship *ship)
 {
-    BSVector2 start(std::rand() % 15, std::rand() % 15);
+    BSVector2<int> start(std::rand() % 15, std::rand() % 15);
     int orient = std::rand() % 15;
     //std::cout << ">>DEBUG>> - START: " << start.x()<<"/" << start.y() << " = " << ship->getName() << std::endl;
-    BSVector2 end(start.x(), start.y());
+    BSVector2<int> end(start.x(), start.y());
 
     if (orient < 6)
     {
@@ -214,7 +246,7 @@ int Player::placeShip(Ship *ship)
 
     if (valid)
     {
-        BSVector2 trueVec(start.x(), start.y());
+        BSVector2<int> trueVec(start.x(), start.y());
         for (int y = 0; y < (end.y() - start.y()); y++)
         {
             for (int x = 0; x < (end.x() - start.x()); x++)
@@ -236,6 +268,7 @@ int Player::placeShip(Ship *ship)
 
 void Player::genBoard()
 {
+
     mBoard = new Board();
     mHitBrd = new Board();
 
@@ -279,14 +312,14 @@ void Player::displayBoard(bool hitBrd)
     Board *refBrd = getPrivateBoard();
     if (hitBrd)
     {
-        refBrd = gethitBrd();
+        refBrd = getHitBoard();
     }
     for (int y = 0; y < 15; y++)
     {
         for (int x = 0; x < 15; x++)
         {
-
-            int tile = refBrd->getTile(BSVector2(x, y));
+            BSVector2<int> def(x, y);
+            int tile = refBrd->getTile(def);
 
             if (tile != 0 && tile >= 10 && !hitBrd)
             {
@@ -336,15 +369,17 @@ Board *Player::getPrivateBoard()
 {
     return mBoard;
 }
-Board *Player::gethitBrd()
+Board *Player::getHitBoard()
 {
     return mHitBrd;
 }
 
-std::string Player::getName(){
+std::string Player::getName()
+{
     return mName;
 }
 
-Ship* Player::getShip(int id){
+Ship *Player::getShip(int id)
+{
     return mShips[id];
 }

@@ -3,21 +3,15 @@
 #include <string>
 #include <random>
 #include <algorithm>
-
+#include <vector>
 #include "battleship.hpp"
-#include "history.hpp"
 #include "player.hpp"
+#include "game_state.hpp"
 
 /**
  * @brief Master GameState Struct
  * 
  */
-struct GameState
-{
-    BSGame::Player* plyers[2];
-    int turn = 0;
-    
-};
 
 
 
@@ -27,11 +21,11 @@ int main(){
     std::cout << std::endl;
     std::cout << ">> Generating Player Objects..." << std::endl;
     GameState* state;
-    BSGame::History history("last_game.bin", "all_games.bin");
+    
 
     state = new GameState();
-    state->plyers[0] = new BSGame::Player("Falkin");
-    state->plyers[1] = new BSGame::Player("Joshua", true);
+    state->plyers.push_back( new BSGame::Player("Falkin"));
+    state->plyers.push_back(new BSGame::Player("Joshua", true));
 
     std::cout << ">> Populating ship array..." << std::endl;
 
@@ -54,7 +48,12 @@ int main(){
         //saveState(state);
         bothAlive = state->plyers[0]->isAlive() && state->plyers[1]->isAlive();
     }
-    delete[] state->plyers;
+    for (auto plyr : state->plyers)
+   {
+     delete plyr;
+   } 
+   state->plyers.clear();
+
     delete state;
     return 0;
 }
